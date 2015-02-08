@@ -2,8 +2,8 @@ language: objective-c # this is to run on a mac worker
 notifications:
   email: false
 script:
-  - svn co --non-interactive --trust-server-cert https://projects.coin-or.org/svn/OS/stable/2.9/ OS-2.9
-  - cd OS-2.9
+  - svn co --non-interactive --trust-server-cert https://projects.coin-or.org/svn/OS/trunk OS-trunk
+  - cd OS-trunk
   - for i in ASL Blas Lapack Metis Mumps; do cd ThirdParty/$i && ./get.$i && cd ../..; done
   - ./configure
   - make -j3
