@@ -1,0 +1,6 @@
+language: objective-c # this is to run on a mac worker
+script:
+  - svn co https://projects.coin-or.org/svn/OS/stable/2.9/ OS-2.9
+  - cd OS-2.9
+  - ./configure
+  - make -j3 -C OS/test alltests
