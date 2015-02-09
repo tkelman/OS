@@ -5,6 +5,6 @@ script:
   - svn co --non-interactive --trust-server-cert https://projects.coin-or.org/svn/OS/trunk OS-trunk
   - cd OS-trunk
   - for i in ASL Blas Lapack Metis Mumps; do cd ThirdParty/$i && ./get.$i && cd ../..; done
-  - ./configure
-  - make -j3
+  - ./configure coin_skip_warn_cflags=yes coin_skip_warn_cxxflags=yes coin_skip_warn_fflags=yes
+  - make -j3 > make.log
   - make -j3 -C OS/test alltests
