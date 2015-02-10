@@ -2,14 +2,15 @@ language: objective-c # this is to run on a mac worker
 notifications:
   email: false
 script:
-  - svn co --non-interactive --trust-server-cert https://projects.coin-or.org/svn/OS/trunk OS-trunk
+  - svn co -q --non-interactive --trust-server-cert https://projects.coin-or.org/svn/OS/trunk OS-trunk
   - cd OS-trunk
   - for i in ASL Blas Lapack Metis Mumps; do cd ThirdParty/$i && ./get.$i && cd ../..; done
   - ./configure --enable-debug coin_skip_warn_cflags=yes coin_skip_warn_cxxflags=yes coin_skip_warn_fflags=yes
   - make -j3 > make.log
   - make -j3 test
   - cd OS/test
-  - echo "r" >> lldb.txt
-  - echo "bt" >> lldb.txt
-  - lldb -s lldb.txt ./unitTest nb
+  - gdb -ex r -ex bt --batch --args ./unitTest nb
+#  - echo "r" >> lldb.txt
+#  - echo "bt" >> lldb.txt
+#  - lldb -s lldb.txt ./unitTest nb
 #  - make -j3 -C OS/test alltests
