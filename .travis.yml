@@ -2,7 +2,7 @@ language: objective-c # this is to run on a mac worker
 notifications:
   email: false
 script:
-  - brew install gdb
+  - brew install homebrew/dupes/gdb
   - svn co -q --non-interactive --trust-server-cert https://projects.coin-or.org/svn/OS/trunk OS-trunk
   - cd OS-trunk
   - for i in ASL Blas Lapack Metis Mumps; do cd ThirdParty/$i && ./get.$i && cd ../..; done
